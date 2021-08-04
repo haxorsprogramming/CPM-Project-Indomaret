@@ -38,9 +38,6 @@
                                             <div class="form-group">
                                                 <input class="form-control" type="password" id="txt_password" placeholder="Password">
                                             </div>
-                                            <div id='cap_notif_login'>
-
-                                            </div>
                                             <div class="mt-3">
                                                 <a id="btn_masuk" @click="masuk_atc()" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="#!">Masuk</a>
                                             </div>
@@ -66,12 +63,12 @@
             <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-            
+
             <script src="{{ asset('ladun') }}/loginpage/vendors/base/vendor.bundle.base.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <!-- endinject -->
             <!-- inject:js -->
-             <script src="{{ asset('ladun') }}/loginpage/js/template.js"></script>
+            <script src="{{ asset('ladun') }}/loginpage/js/template.js"></script>
             <!-- endinject -->
             <script>
                 const server = "{{ url('/') }}/";

@@ -3,6 +3,7 @@
  <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
    <title>Dashboard</title>
    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
    <!-- General CSS Files -->
@@ -63,7 +64,7 @@
             <ul class="sidebar-menu" style="margin-top:20px;">
               <li><a class="nav-link" @click="beranda_atc()" href="#!"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
               <li><a class="nav-link" @click="manajemen_proyek_atc()" href="#!"><i class="fas fa-city"></i><span>Manajemen Proyek</span></a></li>
-              <li><a class="nav-link" href="#!"><i class="fas fa-industry"></i><span>Kegiatan</span></a></li>
+              <li><a class="nav-link" @click="kegiatan_atc()" href="#!"><i class="fas fa-industry"></i><span>Kegiatan</span></a></li>
               <li><a class="nav-link" href="#!"><i class="fas fa-sitemap"></i><span>Sub Kegiatan</span></a></li>
               <li><a class="nav-link" href="#!"><i class="fas fa-tasks"></i><span>Manajemen Kegiatan</span></a></li>
               <li><a class="nav-link" href="#!"><i class="fas fa-chart-bar"></i><span>Laporan</span></a></li>

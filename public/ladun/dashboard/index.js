@@ -14,6 +14,11 @@ var divMenu = new Vue({
         {
             divMain.titleApps = "Manajemen Proyek";
             renderMenu("dashboard/manajemen-proyek/data");
+        },
+        kegiatan_atc : function()
+        {
+          divMain.titleApps = "Kegiatan";
+          renderMenu("dashboard/kegiatan/data");
         }
     }
 });
@@ -37,6 +42,16 @@ function renderMenu(halaman){
     $('#divUtama').html("Memuat halaman ..");
     $('#divUtama').load(server+halaman);
     progStop();
+}
+
+function pesanUmumApp(icon, title, text)
+{
+  Swal.fire({
+    icon : icon,
+    title : title,
+    text : text
+  });
+
 }
 
 function progStart()

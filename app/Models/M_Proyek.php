@@ -9,6 +9,8 @@ class M_Proyek extends Model
 {
     protected $table = 'tbl_proyek';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'kd_proyek',
         'nama_proyek',

@@ -15,12 +15,14 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($data_proyek as $proyek)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $loop -> iteration }}</td>
+                    <td>{{ $proyek -> kd_proyek }}</td>
+                    <td>{{ $proyek -> nama_proyek }}</td>
                     <td></td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -39,7 +41,7 @@
                 <textarea class="form-control" style="resize:none;" id="txt_deksripsi"></textarea>
             </div>
             <div>
-                <a href="#!" class="btn btn-primary btn-icon icon-left">
+                <a href="#!" class="btn btn-primary btn-icon icon-left" @click="simpan_atc()">
                     <i class="fas fa-save"></i> Simpan
                 </a>&nbsp;&nbsp;
                 <a href="#!" class="btn btn-info btn-icon icon-left">
@@ -51,6 +53,9 @@
 </div>
 
 <script>
+    // route 
+    var r_proses_tambah_proyek = server + "dashboard/manajemen-proyek/tambah/proses";
+
     $("#tbl_data_proyek").dataTable();
 
     var app_proyek = new Vue({
@@ -62,6 +67,27 @@
             tambah_proyek_atc: function() {
                 $("#div_data_proyek").hide();
                 $("#div_tambah_proyek").show();
+            },
+            simpan_atc : function()
+            {
+                let kd_proyek = document.querySelector("#txt_kode_proyek").value;
+                let nama_proyek = document.querySelector("#txt_nama_proyek").value;
+                let deksripsi = document.querySelector("#txt_deksripsi").value;
+                if(kd_proyek === '' || nama_proyek === '' || deksripsi === ''){
+                    pesanUmumApp('warning', 'Fill field!!!', 'Harap isi seluruh field!!!');
+                }else{
+                    let ds = {'kd_proyek':kd_proyek, 'nama_proyek':nama_proyek, 'deksripsi':deksripsi}
+                    axios.post(r_proses_tambah_proyek, ds).then(function(res){
+                        let dr = res.data;
+                        if(dr.status === 'sukses'){
+                            pesanUmumApp('success', 'Sukses', 'Berhasil menambahkan proyek ');
+                            divMain.titleApps = "Manajemen Proyek";
+                            renderMenu("dashboard/manajemen-proyek/data");
+                        }else{
+
+                        }
+                    });
+                }
             }
         }
     });

@@ -7,6 +7,9 @@
             <a href="#!" class="btn btn-lg btn-info  btn-icon icon-left" @click="proses_perhitungan_cpm()">
                 <i class="fas fa-plus-circle"></i> Proses Perhitungan CPM
             </a>
+            <a href="#!" class="btn btn-lg btn-success  btn-icon icon-left" @click="export_pdf()">
+                <i class="fas fa-plus-circle"></i> Export PDF
+            </a>
             <input type="hidden" value="{{ $kd_proyek }}" id="txt_hid_kd_proyek">
         </div>
         <table class="table table-hover" id="tbl_data_manajemen_kegiatan">
@@ -18,11 +21,10 @@
                     <th>Mulai</th>
                     <th>Selesai</th>
                     <th>ES</th>
-                    <th>LF</th>
-                    <th>LS</th>
                     <th>EF</th>
+                    <th>LS</th>
+                    <th>LF</th>
                     <th>Slack</th>
-                    <th>Free Slack</th>
                     <th>Biaya Normal</th>
                     <th>Biaya Crash</th>
                 </tr>
@@ -35,12 +37,11 @@
                     <td>{{ $hasil -> durasi }}</td>
                     <td>{{ $hasil -> mulai }}</td>
                     <td>{{ $hasil -> selesai }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $hasil -> es }}</td>
+                    <td>{{ $hasil -> ef }}</td>
+                    <td>{{ $hasil -> ls }}</td>
+                    <td>{{ $hasil -> lf }}</td>
+                    <td>{{ $hasil -> total_slack }}</td>
                     <td>Rp. {{ number_format($hasil -> biaya_normal) }}</td>
                     <td>Rp. {{ number_format($hasil -> biaya_crash) }}</td>
                 </tr>
@@ -97,6 +98,7 @@
 
     var r_to_proses_cpm = server + "dashboard/manajemen-kegiatan/cpm/proses";
     var r_hitung_cpm = server + "dashboard/manajemen-kegiatan/cpm/hitung";
+    var r_export = server + "dashboard/manajemen-kegiatan/cpm/export-pdf/";
 
     $("#tbl_data_manajemen_kegiatan").dataTable();
 
@@ -130,9 +132,16 @@
                 let ds = {'kd_proyek':kd_proyek}
                 axios.post(r_hitung_cpm, ds).then(function(res){
                     let dr = res.data;
-                    console.log(dr);
+                    pesanUmumApp('success', 'Sukses', 'Berhasil melakukan perhitungan CPM...');
+                    divMain.titleApps = "Kegiatan";
+                    renderMenu("dashboard/manajemen-kegiatan/detail/"+kd_proyek);
                 });
                 
+            },
+            export_pdf : function()
+            {
+                let kd_proyek = document.querySelector("#txt_hid_kd_proyek").value;
+                window.open(r_export+kd_proyek);
             }
         }
     });

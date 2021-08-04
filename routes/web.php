@@ -32,5 +32,6 @@ Route::get('/dashboard/manajemen-kegiatan/data', [C_Manajemen_Kegiatan::class, '
 Route::get('/dashboard/manajemen-kegiatan/detail/{proyek}', [C_Manajemen_Kegiatan::class, 'detail_manajemen_kegiatan']);
 Route::post('/dashboard/manajemen-kegiatan/cpm/proses', [C_Manajemen_Kegiatan::class, 'proses_cpm']);
 Route::post('/dashboard/manajemen-kegiatan/cpm/hitung', [C_Manajemen_Kegiatan::class, 'hitung_cpm']);
+Route::get('/dashboard/manajemen-kegiatan/cpm/export-pdf/{kd_proyek}', [C_Manajemen_Kegiatan::class, 'export_pdf']);
 
 Route::get('/logout', [C_Page::class, 'logout']);

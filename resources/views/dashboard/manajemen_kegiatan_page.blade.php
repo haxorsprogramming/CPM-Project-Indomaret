@@ -15,7 +15,7 @@
     function set_proyek()
     {
         let kd_proyek = document.querySelector("#txt_kd_proyek").value;
-        divMain.titleApps = "Kegiatan";
+        divMain.titleApps = "Kegiatan "+kd_proyek;
         renderMenu("dashboard/manajemen-kegiatan/detail/"+kd_proyek);
     }
 

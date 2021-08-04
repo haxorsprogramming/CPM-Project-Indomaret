@@ -19,6 +19,11 @@ var divMenu = new Vue({
         {
           divMain.titleApps = "Kegiatan";
           renderMenu("dashboard/kegiatan/data");
+        },
+        sub_kegiatan_atc : function()
+        {
+          divMain.titleApps = "Sub Kegiatan";
+          renderMenu("dashboard/sub-kegiatan/data");
         }
     }
 });

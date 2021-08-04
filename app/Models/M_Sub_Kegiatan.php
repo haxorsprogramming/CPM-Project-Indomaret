@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class M_Sub_Kegiatan extends Model
 {
-    use HasFactory;
+    protected $table = 'tbl_sub_kegiatan';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'kd_sub_kegiatan',
+        'kd_kegiatan',
+        'nama_sub_kegiatan',
+        'deksripsi',
+        'aktif'
+    ];
 }

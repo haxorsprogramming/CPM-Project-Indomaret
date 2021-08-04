@@ -51,6 +51,13 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                <label>Kegiatan pendahulu</label>
+                <select class="form-control" id="txt_kegiatan_pendahulu">
+                    <option value="none">-- Pilih Kegiatan --</option>
+                    <option value="no">-- Tidak ada kegiatan pendahulu --</option>
+                </select>
+            </div>
             <div>
                 <a href="#!" class="btn btn-primary btn-icon icon-left" @click="simpan_atc()">
                     <i class="fas fa-save"></i> Simpan
@@ -86,10 +93,12 @@
                 let nama_kegiatan = document.querySelector("#txt_nama_kegiatan").value;
                 let deksripsi = document.querySelector("#txt_deksripsi").value;
                 let kd_proyek = document.querySelector("#txt_proyek").value;
+                let kd_kegiatan_pendahulu = document.querySelector("#txt_kegiatan_pendahulu").value;
+
                 if(kd_kegiatan === '' || nama_kegiatan === '' || deksripsi === '' || kd_proyek === 'none'){
                     pesanUmumApp('warning', 'Fill field!!!', 'Harap isi seluruh field!!!');
                 }else{
-                    let ds = {'kd_kegiatan':kd_kegiatan, 'nama_kegiatan':nama_kegiatan, 'deksripsi':deksripsi, 'kd_proyek':kd_proyek}
+                    let ds = {'kd_kegiatan':kd_kegiatan, 'nama_kegiatan':nama_kegiatan, 'deksripsi':deksripsi, 'kd_proyek':kd_proyek, 'kd_kegiatan_pendahulu':kd_kegiatan_pendahulu}
                     axios.post(r_proses_tambah_kegiatan, ds).then(function(res){
                         let dr = res.data;
                         if(dr.status === 'sukses'){

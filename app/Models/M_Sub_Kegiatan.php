@@ -18,4 +18,10 @@ class M_Sub_Kegiatan extends Model
         'deksripsi',
         'aktif'
     ];
+
+    public function kegiatan_data()
+    {
+        return $this -> belongsTo(M_Kegiatan::class, 'kd_kegiatan', 'kd_kegiatan');
+    }
+
 }

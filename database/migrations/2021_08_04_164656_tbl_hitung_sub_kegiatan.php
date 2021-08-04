@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TblHasil extends Migration
+class TblHitungSubKegiatan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class TblHasil extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_hasil', function (Blueprint $table) {
+        Schema::create('tbl_hitung_sub_kegiatan', function (Blueprint $table) {
             $table -> id();
-            $table -> char('kd_kegiatan', 20);
-            $table -> integer('durasi');
+            $table -> char('kd_sub_kegiatan', 20);
             $table -> date('mulai') -> nullable();
             $table -> date('selesai') -> nullable();
-            $table -> integer('es');
-            $table -> integer('lf');
-            $table -> integer('ef');
-            $table -> integer('total_stack');
-            $table -> integer('free_slack');
             $table -> integer('biaya_normal');
             $table -> integer('biaya_crash');
             $table -> char('aktif', 1);
@@ -37,6 +31,6 @@ class TblHasil extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_hasil');
+        Schema::dropIfExists('tbl_hitung_sub_kegiatan');
     }
 }

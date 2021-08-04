@@ -17,11 +17,16 @@
             </thead>
             <tbody>
                @foreach($data_sub_kegiatan as $sub_kegiatan)
+               @php
+                $kd_kegiatan = $sub_kegiatan -> kd_kegiatan;
+                $kd_proyek = $sub_kegiatan -> kegiatan_data -> kd_proyek;
+                $data_proyek = DB::table('tbl_proyek') -> where('kd_proyek', $kd_proyek) -> get();
+               @endphp
                 <tr>
                     <td>{{ $loop -> iteration }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $sub_kegiatan -> kd_sub_kegiatan }}</td>
+                    <td>{{ $sub_kegiatan -> nama_sub_kegiatan }}</td>
+                    <td>{{ $sub_kegiatan -> kegiatan_data -> nama_kegiatan }} <br/><b>{{ $data_proyek[0] -> nama_proyek }}</b></td>
                     <td></td>
                 </tr>
                @endforeach

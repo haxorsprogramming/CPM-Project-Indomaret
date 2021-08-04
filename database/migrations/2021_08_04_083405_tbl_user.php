@@ -17,7 +17,7 @@ class TblUser extends Migration
             $table -> id();
             $table -> char('username', 150);
             $table -> char('kata_sandi', 100);
-            $table -> enum('tipe_user', ['super-admin', 'guru', 'siswa', 'tu']);
+            $table -> enum('tipe_user', ['admin', 'kontraktor']);
             $table -> timestamp('last_login', 0) -> nullable(); 
             $table -> char('aktif', 1);
         });

@@ -1,5 +1,6 @@
 // route 
-
+var r_proses_login = server + "login/proses";
+console.log(r_proses_login);
 // vue object 
 var app_login = new Vue({
   el : '#login-app',
@@ -9,7 +10,10 @@ var app_login = new Vue({
   methods : {
     masuk_atc : function()
     {
-      console.log("haloo");
+      axios.post(r_proses_login).then(function(res){
+        let dr = res.data;
+        console.log(dr);
+      });
     }
   }
 });

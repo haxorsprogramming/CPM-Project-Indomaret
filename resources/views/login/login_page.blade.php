@@ -36,7 +36,7 @@
                                                 <input type="text" class="form-control" id="txt_username" placeholder="Username">
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" type="password" id="txt_username" placeholder="Password">
+                                                <input class="form-control" type="password" id="txt_password" placeholder="Password">
                                             </div>
                                             <div id='cap_notif_login'>
 
@@ -74,7 +74,7 @@
              <script src="{{ asset('ladun') }}/loginpage/js/template.js"></script>
             <!-- endinject -->
             <script>
-                const server = "{{ url('/') }}";
+                const server = "{{ url('/') }}/";
             </script>
             <script src="{{ asset('ladun') }}/loginpage/js/login.js"></script>
 </body>

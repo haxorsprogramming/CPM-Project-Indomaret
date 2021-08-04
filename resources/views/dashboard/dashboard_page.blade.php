@@ -40,10 +40,10 @@
          <ul class="navbar-nav navbar-right">
 
            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-             <img alt="image" src="{{ asset('/ladun/dashboard') }}/img/avatar-1.png" %}" class="rounded-circle mr-1">
-             <div class="d-sm-none d-lg-inline-block">Hi, </div></a>
+             <img alt="image" src="{{ asset('/ladun/dashboard') }}/img/avatar-1.png" class="rounded-circle mr-1">
+             <div class="d-sm-none d-lg-inline-block">Hi, Administrator</div></a>
              <div class="dropdown-menu dropdown-menu-right">
-               <a href="" id='btnLogOutTop' class="dropdown-item has-icon text-danger">
+               <a href="{{ url('/logout') }}" class="dropdown-item has-icon text-danger">
                  <i class="fas fa-sign-out-alt"></i> Logout
                </a>
              </div>
@@ -54,18 +54,20 @@
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
               <a href="#!" style="height:30px;">
-              <img src="{{ asset('/ladun/dashboard') }}/img/logo_uinsu.jpg" %}" style="width: 60px;">
+              <img src="{{ asset('/ladun/dashboard') }}/img/logo_uinsu.jpg" style="width: 60px;">
               </a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
               <a href="#!"></a>
             </div>
             <ul class="sidebar-menu" style="margin-top:20px;">
-              <li><a class="nav-link" href="#!" @click="berandaAtc()"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
-              <li><a class="nav-link" href="#!" @click="buatKunciRsa()"><i class="fas fa-fingerprint"></i><span>Manajemen Kunci RSA</span></a></li>
-              <li><a class="nav-link" href="#!" @click="pengujianAtc()"><i class="fas fa-fingerprint"></i><span>Pengujian Encode</span></a></li>
-              <li><a class="nav-link" href="#!" @click="pengujianDecodeAtc()"><i class="fas fa-fingerprint"></i><span>Pengujian Decode</span></a></li>
-              <li><a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> <span>LogOut</span></a></li>
+              <li><a class="nav-link" @click="beranda_atc()" href="#!"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+              <li><a class="nav-link" @click="manajemen_proyek_atc()" href="#!"><i class="fas fa-city"></i><span>Manajemen Proyek</span></a></li>
+              <li><a class="nav-link" href="#!"><i class="fas fa-industry"></i><span>Kegiatan</span></a></li>
+              <li><a class="nav-link" href="#!"><i class="fas fa-sitemap"></i><span>Sub Kegiatan</span></a></li>
+              <li><a class="nav-link" href="#!"><i class="fas fa-tasks"></i><span>Manajemen Kegiatan</span></a></li>
+              <li><a class="nav-link" href="#!"><i class="fas fa-chart-bar"></i><span>Laporan</span></a></li>
+              <li><a class="nav-link" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> <span>Log Out</span></a></li>
           </ul>
           </aside>
        </div>
@@ -74,7 +76,7 @@
        <div class="main-content" id="divMain">
          <section class="section">
            <div class="section-header">
-             <h1 id="capUtama"> Aplikasi Pengamanan Pesan - [[ titleApps ]] </h1>
+             <h1 id="capUtama"> Aplikasi Manajemen Proyek - @{{ titleApps }} </h1>
            </div>
 
             <div id="divUtama"></div>
@@ -82,7 +84,7 @@
 
      </div>
    </div>
-   <footer class="main-footer" id='divFooter'>Copyright &copy; Diana Vita - Prodi Ilmu Komputer, Fakultas Sains dan Teknologi, Universitas Islam Negeri Sumatera Utara </footer>
+   <footer class="main-footer" id='divFooter'>Copyright &copy; Irwansyah Tamba - Prodi Sistem Informasi, Fakultas Sains dan Teknologi, Universitas Islam Negeri Sumatera Utara </footer>
    <!-- General JS Scripts -->
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -104,7 +106,7 @@
 
    <!-- Page Specific JS File -->
    <script>
-     const server = "{{ url('/') }}";
+     const server = "{{ url('/') }}/";
    </script>
    <script src="{{ asset('/ladun/dashboard') }}/index.js"></script>
  </body>

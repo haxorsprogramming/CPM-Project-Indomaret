@@ -10,4 +10,9 @@ class C_Page extends Controller
     {
         return view('login.login_page');
     }
+    public function logout(Request $request)
+    {
+        $request -> session() -> flush();
+        return redirect('/');
+    }
 }

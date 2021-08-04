@@ -1,41 +1,24 @@
 // vue object 
 var divMenu = new Vue({
-    delimiters: ["[[", "]]"],
     el : '#divMenu',
     data : {
 
     },
     methods : {
-        berandaAtc : function()
+        beranda_atc : function()
         {
             divMain.titleApps = "Beranda";
             renderMenu("dashboard/beranda");
         },
-        pengujianAtc : function()
+        manajemen_proyek_atc : function()
         {
-            divMain.titleApps = "Pengujian Encode";
-            renderMenu("dashboard/pengujian");
-        },
-        dataKaligrafiAtc : function()
-        {
-            divMain.titleApps = "Data Kaligrafi";
-            renderMenu("dashboard/data-kaligrafi");
-        },
-        buatKunciRsa : function()
-        {
-            divMain.titleApps = "Buat Kunci RSA";
-            renderMenu("dashboard/buat-kunci-rsa");
-        },
-        pengujianDecodeAtc : function()
-        {
-            divMain.titleApps = "Pengujian Decode";
-            renderMenu("dashboard/pengujian-decode");
+            divMain.titleApps = "Manajemen Proyek";
+            renderMenu("dashboard/manajemen-proyek/data");
         }
     }
 });
 
 var divMain = new Vue({
-    delimiters: ["[[", "]]"],
     el : '#divMain',
     data : {
         titleApps : 'Beranda'
@@ -46,8 +29,8 @@ var divMain = new Vue({
 });
 
 
-// inisialisasi & function 
-divMenu.berandaAtc();
+// inisialisasi
+divMenu.beranda_atc();
 
 function renderMenu(halaman){
     progStart();

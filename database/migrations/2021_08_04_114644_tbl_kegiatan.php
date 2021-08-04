@@ -19,6 +19,8 @@ class TblKegiatan extends Migration
             $table -> char('kd_proyek', 20);
             $table -> char('nama_kegiatan', 200);
             $table -> text('deksripsi');
+            $table -> date('mulai') -> nullable();
+            $table -> date('selesai') -> nullable();
             $table -> char('aktif', 1);
         });
     }

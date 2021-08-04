@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label>Proyek</label>
-                <select class="form-control" id="txt_proyek">
+                <select class="form-control" id="txt_proyek" onchange="set_proyek()">
                     <option value="none">-- Pilih Proyek --</option>
                     @foreach($data_proyek as $proyek)
                     <option value="{{ $proyek -> kd_proyek }}">{{ $proyek -> nama_proyek }}</option>
@@ -52,10 +52,24 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Kegiatan pendahulu</label>
-                <select class="form-control" id="txt_kegiatan_pendahulu">
-                    <option value="none">-- Pilih Kegiatan --</option>
+                <label>Kegiatan pendahulu 1</label>
+                <select class="form-control" id="txt_kegiatan_pendahulu1">
                     <option value="no">-- Tidak ada kegiatan pendahulu --</option>
+                    <option v-for="kg in kegiatan" v-bind:value="kg.kd_kegiatan">@{{ kg.kd_kegiatan }} - @{{ kg.nama }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kegiatan pendahulu 2</label>
+                <select class="form-control" id="txt_kegiatan_pendahulu2">
+                    <option value="no">-- Tidak ada kegiatan pendahulu --</option>
+                    <option v-for="kg in kegiatan" v-bind:value="kg.kd_kegiatan">@{{ kg.kd_kegiatan }} - @{{ kg.nama }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kegiatan pendahulu 3</label>
+                <select class="form-control" id="txt_kegiatan_pendahulu3">
+                    <option value="no">-- Tidak ada kegiatan pendahulu --</option>
+                    <option v-for="kg in kegiatan" v-bind:value="kg.kd_kegiatan">@{{ kg.kd_kegiatan }} - @{{ kg.nama }}</option>
                 </select>
             </div>
             <div>
@@ -73,13 +87,14 @@
 <script>
     // route 
     var r_proses_tambah_kegiatan = server + "dashboard/kegiatan/tambah/proses";
+    var r_get_kegiatan = server + "dashboard/kegiatan/get-kegiatan";
 
     $("#tbl_data_kegiatan").dataTable();
 
     var app_kegiatan = new Vue({
         el : '#div_kegiatan',
         data : {
-            
+            kegiatan : []
         },
         methods : {
             tambah_kegiatan_atc : function()
@@ -93,12 +108,14 @@
                 let nama_kegiatan = document.querySelector("#txt_nama_kegiatan").value;
                 let deksripsi = document.querySelector("#txt_deksripsi").value;
                 let kd_proyek = document.querySelector("#txt_proyek").value;
-                let kd_kegiatan_pendahulu = document.querySelector("#txt_kegiatan_pendahulu").value;
+                let kd_kp1 = document.querySelector("#txt_kegiatan_pendahulu1").value;
+                let kd_kp2 = document.querySelector("#txt_kegiatan_pendahulu2").value;
+                let kd_kp3 = document.querySelector("#txt_kegiatan_pendahulu3").value;
 
                 if(kd_kegiatan === '' || nama_kegiatan === '' || deksripsi === '' || kd_proyek === 'none'){
                     pesanUmumApp('warning', 'Fill field!!!', 'Harap isi seluruh field!!!');
                 }else{
-                    let ds = {'kd_kegiatan':kd_kegiatan, 'nama_kegiatan':nama_kegiatan, 'deksripsi':deksripsi, 'kd_proyek':kd_proyek, 'kd_kegiatan_pendahulu':kd_kegiatan_pendahulu}
+                    let ds = {'kd_kegiatan':kd_kegiatan, 'nama_kegiatan':nama_kegiatan, 'deksripsi':deksripsi, 'kd_proyek':kd_proyek, 'kd_kp1':kd_kp1, 'kd_kp2':kd_kp2, 'kd_kp3':kd_kp3}
                     axios.post(r_proses_tambah_kegiatan, ds).then(function(res){
                         let dr = res.data;
                         if(dr.status === 'sukses'){
@@ -113,5 +130,24 @@
             }
         }
     });
+
+    function set_proyek()
+    {
+        let kd_proyek = document.querySelector("#txt_proyek").value;
+        let ds = {'kd_proyek':kd_proyek}
+        axios.post(r_get_kegiatan, ds).then(function(res){
+            let dr = res.data;
+            let kegiatan = dr.data_kegiatan;
+            let jlh_kegiatan = app_kegiatan.kegiatan.length;
+            var i;
+            for(i = 0; i < jlh_kegiatan; i++){
+                app_kegiatan.kegiatan.splice(0,1);
+            }
+            kegiatan.forEach(render_kegiatan);
+            function render_kegiatan(item, index){
+                app_kegiatan.kegiatan.push({nama:kegiatan[index].nama_kegiatan, kd_kegiatan:kegiatan[index].kd_kegiatan});
+            }
+        });
+    }
 
 </script>

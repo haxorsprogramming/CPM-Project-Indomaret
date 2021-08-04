@@ -16,16 +16,18 @@ class TblHasil extends Migration
         Schema::create('tbl_hasil', function (Blueprint $table) {
             $table -> id();
             $table -> char('kd_kegiatan', 20);
-            $table -> integer('durasi');
+            $table -> char('kd_proyek');
+            $table -> integer('durasi') -> nullable();
             $table -> date('mulai') -> nullable();
             $table -> date('selesai') -> nullable();
-            $table -> integer('es');
-            $table -> integer('lf');
-            $table -> integer('ef');
-            $table -> integer('total_stack');
-            $table -> integer('free_slack');
-            $table -> integer('biaya_normal');
-            $table -> integer('biaya_crash');
+            $table -> integer('es') -> nullable();
+            $table -> integer('lf') -> nullable();
+            $table -> integer('ef') -> nullable();
+            $table -> integer('ls') -> nullable();
+            $table -> integer('total_slack') -> nullable();
+            $table -> integer('free_slack') -> nullable();
+            $table -> integer('biaya_normal') -> nullable();
+            $table -> integer('biaya_crash') -> nullable();
             $table -> char('aktif', 1);
         });
     }

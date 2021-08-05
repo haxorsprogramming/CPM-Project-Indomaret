@@ -41,8 +41,6 @@ class C_Manajemen_Kegiatan extends Controller
         $biaya_crash = $request -> biaya_crash;
         DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['durasi' => $selisih_final, 'mulai' => $mulai, 'selesai' => $selesai, 'biaya_normal' => $biaya_normal, 'biaya_crash' => $biaya_crash]);
         // // cari durasi 
-        // $data_hasil = M_Hasil::where('kd_kegiatan', $kd_kegiatan) -> first();
-        // $durasi = $data_hasil -> durasi;
         $dr = [
             'kd_kegiatan' => $kd_kegiatan
         ];
@@ -51,19 +49,25 @@ class C_Manajemen_Kegiatan extends Controller
 
     public function hitung_cpm(Request $request)
     {
+        // ambil variabel kode proyek 
         $kd_proyek = $request -> kd_proyek;
+        // ambil data hasil dari model hasil dengan parameter kode proyek 
         $data_hasil = M_Hasil::where('kd_proyek', $kd_proyek) -> get();
+        // buat array kosong 
         $dataR = array();
+        // variabel x untuk perulangan 
         $x = 0;
-        // cari nilai ES & EF 
+        // cari nilai ES & EF menggunakan foreach (query maju)
         foreach($data_hasil as $hasil){
             $kd_kegiatan = $hasil -> kd_kegiatan;
             $durasi = $hasil -> durasi;
             // cek apakah ada pendahulu atau tidak 
             $total_pendahulu = DB::table('tbl_kegiatan_pendahulu') -> where('kd_kegiatan', $kd_kegiatan) -> count();
             if($total_pendahulu == 0){
+                // jika nol maka kembalikan nila ES 0 dan EF sesuai dengan durasi 
                 $ES = 0;
                 $EF = $durasi;
+                // update nilai ES dan EF 
                 DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['es' => $ES, 'ef' => $EF]);
             }else{
                 // cari nilai EF
@@ -79,7 +83,7 @@ class C_Manajemen_Kegiatan extends Controller
                 }
             }
         }
-        // cari nilai LS & LF 
+        // cari nilai LS & LF menggunakan foreach (query mundur)
         $q_mundur = DB::table('tbl_hasil') -> where('kd_proyek', $kd_proyek) -> orderBy('id', 'desc') -> get();
         foreach($q_mundur as $mundur){
             $kd_kegiatan = $mundur -> kd_kegiatan;
@@ -87,11 +91,11 @@ class C_Manajemen_Kegiatan extends Controller
             $total_penerus = DB::table('tbl_kegiatan_pendahulu') -> where('kd_kegiatan_pendahulu', $kd_kegiatan) -> count();
             if($total_penerus == 0){
                 $data_ef_sendiri = DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> first();
+
                 $LF = $data_ef_sendiri -> ef;
                 DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['lf' => $LF]);
                 $LS = $LF - $durasi;
                 DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['ls' => $LS]);
-                // DB::table('l')
             }else{
                 $q_aktivitas_penerus = DB::table('tbl_kegiatan_pendahulu') -> where('kd_kegiatan_pendahulu', $kd_kegiatan) -> first();
                 $kd_aktivitas_penerus = $q_aktivitas_penerus -> kd_kegiatan;
@@ -99,9 +103,6 @@ class C_Manajemen_Kegiatan extends Controller
                 $q_nilai_lf = DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_aktivitas_penerus) -> first();
                 
                 $LF = $q_nilai_lf -> ls;
-                // $dr = ['status' => $LF];
-                // return \Response::json($dr);
-                // die();
                 DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['lf' => $LF]);
                 $LS = $LF - $durasi;
                 DB::table('tbl_hasil') -> where('kd_kegiatan', $kd_kegiatan) -> update(['ls' => $LS]);

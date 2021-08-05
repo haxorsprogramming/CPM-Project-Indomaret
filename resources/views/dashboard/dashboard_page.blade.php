@@ -67,7 +67,8 @@
               <li><a class="nav-link" @click="kegiatan_atc()" href="#!"><i class="fas fa-industry"></i><span>Kegiatan</span></a></li>
               <li><a class="nav-link" @click="sub_kegiatan_atc()" href="#!"><i class="fas fa-sitemap"></i><span>Sub Kegiatan</span></a></li>
               <li><a class="nav-link" @click="manajemen_kegiatan_atc()" href="#!"><i class="fas fa-tasks"></i><span>Manajemen Kegiatan</span></a></li>
-              <li><a class="nav-link" href="#!"><i class="fas fa-chart-bar"></i><span>Laporan</span></a></li>
+              <li><a class="nav-link" @click="laporan_proyek_atc()" href="#!"><i class="fas fa-chart-bar"></i><span>Laporan</span></a></li>
+              <li><a class="nav-link" @click="manajemen_user_atc()" href="#!"><i class="fas fa-user-circle"></i><span>Manajemen User</span></a></li>
               <li><a class="nav-link" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> <span>Log Out</span></a></li>
           </ul>
           </aside>

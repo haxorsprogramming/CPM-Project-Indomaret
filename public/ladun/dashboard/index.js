@@ -29,6 +29,16 @@ var divMenu = new Vue({
         {
           divMain.titleApps = "Manejemen Kegiatan";
           renderMenu("dashboard/manajemen-kegiatan/data");
+        },
+        laporan_proyek_atc : function()
+        {
+          divMain.titleApps = "Laporan Proyek";
+          renderMenu("dashboard/laporan-proyek/laporan");
+        },
+        manajemen_user_atc : function()
+        {
+          divMain.titleApps = "Manajemen User";
+          renderMenu("dashboard/manajemen-user/data");
         }
     }
 });

@@ -9,6 +9,8 @@ use App\Http\Controllers\C_Manajemen_Proyek;
 use App\Http\Controllers\C_Kegiatan;
 use App\Http\Controllers\C_Sub_Kegiatan;
 use App\Http\Controllers\C_Manajemen_Kegiatan;
+use App\Http\Controllers\C_Laporan;
+use App\Http\Controllers\C_User;
 
 Route::get('/', [C_Page::class, 'login_page']);
 Route::post('/login/proses', [C_Login::class, 'proses_login']);
@@ -33,5 +35,11 @@ Route::get('/dashboard/manajemen-kegiatan/detail/{proyek}', [C_Manajemen_Kegiata
 Route::post('/dashboard/manajemen-kegiatan/cpm/proses', [C_Manajemen_Kegiatan::class, 'proses_cpm']);
 Route::post('/dashboard/manajemen-kegiatan/cpm/hitung', [C_Manajemen_Kegiatan::class, 'hitung_cpm']);
 Route::get('/dashboard/manajemen-kegiatan/cpm/export-pdf/{kd_proyek}', [C_Manajemen_Kegiatan::class, 'export_pdf']);
+// laporan 
+Route::get('/dashboard/laporan-proyek/laporan', [C_Laporan::class, 'laporan_proyek']);
+Route::get('/dashboard/laporan-proyek/{kd_proyek}', [C_Laporan::class, 'detail_laporan']);
+// manajemen user 
+Route::get('/dashboard/manajemen-user/data', [C_User::class, 'data_user']);
+Route::post('/dashboard/manajemen-user/tambah/proses', [C_User::class, 'proses_tambah']);
 
 Route::get('/logout', [C_Page::class, 'logout']);

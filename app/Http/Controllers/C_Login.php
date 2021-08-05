@@ -36,11 +36,12 @@ class C_Login extends Controller
             /**
              * Get password verify with native php
              */
-            $cekPassword = password_verify($password, $passwordUserDb);
+            $pass_hash = md5($password);
+            // $cekPassword = password_verify($password, $passwordUserDb);
             /**
              * Check if password true or false
              */
-            if($cekPassword == true){
+            if($pass_hash == $passwordUserDb){
                 /**
                  * if true, create session & status success of respond
                  */

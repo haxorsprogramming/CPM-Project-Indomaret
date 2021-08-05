@@ -9,61 +9,48 @@
 <div class="container">
   <!-- Statistik Bar -->
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-nadha-primary">
           <i class="fas fa-water"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h3></h3>
-            <h4>Pengujian</h4>
+            <h3>{{ $total_proyek }}</h3>
+            <h4>Proyek</h4>
           </div>
           <div class="card-body"></div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="card card-statistic-1">
-        <div class="card-icon bg-nadha-primary">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="card-wrap">
-          <div class="card-header">
-            <h3></h3>
-            <h4>Data Latih</h4>
-          </div>
-          <div class="card-body"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-nadha-primary">
           <i class="fas fa-chart-line"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h3></h3>
-            <h4>Class</h4>
+            <h3>{{ $total_kegiatan }}</h3>
+            <h4>Kegiatan</h4>
           </div>
           <div class="card-body"></div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-nadha-primary">
-          <i class="fas fa-donate"></i>
+          <i class="fas fa-users"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h3></h3>
+            <h3>{{ $total_user }}</h3>
             <h4>User</h4>
           </div>
           <div class="card-body"></div>
         </div>
       </div>
     </div>
+   
   </div>
 </div>

@@ -42,7 +42,13 @@
 
            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
              <img alt="image" src="{{ asset('/ladun/dashboard') }}/img/avatar-1.png" class="rounded-circle mr-1">
-             <div class="d-sm-none d-lg-inline-block">Hi, Administrator</div></a>
+             <div class="d-sm-none d-lg-inline-block">Hi, {{ session('user_login') }} (
+              @if($tipe_user == 'admin')
+                Manajer
+              @else
+                Kontraktor
+              @endif
+             )</div></a>
              <div class="dropdown-menu dropdown-menu-right">
                <a href="{{ url('/logout') }}" class="dropdown-item has-icon text-danger">
                  <i class="fas fa-sign-out-alt"></i> Logout
@@ -68,7 +74,11 @@
               <li><a class="nav-link" @click="sub_kegiatan_atc()" href="#!"><i class="fas fa-sitemap"></i><span>Sub Kegiatan</span></a></li>
               <li><a class="nav-link" @click="manajemen_kegiatan_atc()" href="#!"><i class="fas fa-tasks"></i><span>Manajemen Kegiatan</span></a></li>
               <li><a class="nav-link" @click="laporan_proyek_atc()" href="#!"><i class="fas fa-chart-bar"></i><span>Laporan</span></a></li>
-              <li><a class="nav-link" @click="manajemen_user_atc()" href="#!"><i class="fas fa-user-circle"></i><span>Manajemen User</span></a></li>
+              @if($tipe_user == 'admin')
+                <li><a class="nav-link" @click="manajemen_user_atc()" href="#!"><i class="fas fa-user-circle"></i><span>Manajemen User</span></a></li>
+              @else
+
+              @endif
               <li><a class="nav-link" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> <span>Log Out</span></a></li>
           </ul>
           </aside>

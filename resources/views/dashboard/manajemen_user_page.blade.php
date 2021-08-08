@@ -53,9 +53,7 @@
                 <a href="#!" class="btn btn-primary btn-icon icon-left" @click="simpan_atc()">
                     <i class="fas fa-save"></i> Simpan
                 </a>&nbsp;&nbsp;
-                <a href="#!" class="btn btn-info btn-icon icon-left">
-                    <i class="fas fa-i-cursor"></i> Clear
-                </a>
+                
             </div>
         </div>
     </div>

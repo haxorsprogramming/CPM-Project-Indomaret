@@ -89,4 +89,8 @@ class C_Kegiatan extends Controller
         $dr = ['status' => 'sukses'];
         return \Response::json($dr);
     }
+
+
+    
+
 }

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $now = Carbon::now();
         DB::table('tbl_user') -> insert([
             'username' => 'admin',
-            'kata_sandi' => password_hash('admin', PASSWORD_DEFAULT),
+            'kata_sandi' => md5('admin'),
             'tipe_user' => 'admin',
             'last_login' => $now,
             'aktif' => '1'

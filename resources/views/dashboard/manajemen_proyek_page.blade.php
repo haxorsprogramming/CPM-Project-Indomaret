@@ -20,7 +20,10 @@
                     <td>{{ $loop -> iteration }}</td>
                     <td>{{ $proyek -> kd_proyek }}</td>
                     <td>{{ $proyek -> nama_proyek }}</td>
-                    <td></td>
+                    <td>
+                        <a href="javascript:void(0)" class="btn btn-warning" @click="editAtc('{{ $proyek -> kd_proyek }}')"><i class=""></i>Edit</a>
+                        <a href="javascript:void(0)" class="btn btn-primary" @click="hapusAtc('{{ $proyek -> kd_proyek }}')"><i class="fa fa-trash"></i> Hapus</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -55,6 +58,7 @@
 <script>
     // route 
     var r_proses_tambah_proyek = server + "dashboard/manajemen-proyek/tambah/proses";
+    var r_proses_hapus = server + "dashboard/manajemen-proyek/hapus/proses";
 
     $("#tbl_data_proyek").dataTable();
 
@@ -88,7 +92,28 @@
                         }
                     });
                 }
+            },
+            hapusAtc : function(kd_proyek)
+            {
+                let konfirmasi = window.confirm("Yakin menghapus proyek ... ?");
+                if(konfirmasi === true){
+                    let ds = {'kd_proyek':kd_proyek}
+                    axios.post(r_proses_hapus, ds).then(function(res){
+                        let dr = res.data;
+                        pesanUmumApp('success', 'Sukses', 'Berhasil menghapus proyek');
+                        divMain.titleApps = "Manajemen Proyek";
+                        renderMenu("dashboard/manajemen-proyek/data");
+                    });
+                }else{
+
+                }
+            },
+            editAtc : function(kd_proyek)
+            {
+                divMain.titleApps = "Edit Proyek";
+                renderMenu("dashboard/manajemen-proyek/edit/"+kd_proyek);
             }
         }
     });
+    
 </script>
